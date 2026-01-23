@@ -1,41 +1,29 @@
-import { SSTConfig } from "sst";
-import { NextjsSite } from "sst/constructs";
+/// <reference path="./.sst/platform/config.d.ts" />
 
-export default {
-  config(_input) {
+export default $config({
+  app(input) {
     return {
       name: "candycoat",
-      region: "us-east-1", // Change to your preferred region
+      removal: input?.stage === "production" ? "retain" : "remove",
+      home: "aws",
     };
   },
-  stacks(app) {
-    app.stack(function Site({ stack }) {
-      const site = new NextjsSite(stack, "site", {
-        // Optional: Add custom domain
-        // customDomain: {
-        //   domainName: "candycoat.co",
-        //   domainAlias: "www.candycoat.co",
-        // },
+  async run() {
+    const nextjs = new sst.aws.Nextjs("site", {
+      // Optional: Add custom domain
+      // domain: {
+      //   name: "candycoat.co",
+      //   aliases: ["www.candycoat.co"],
+      // },
 
-        // Environment variables
-        environment: {
-          NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || "https://candycoat.co",
-        },
-
-        // CloudFront distribution settings
-        cdk: {
-          distribution: {
-            defaultBehavior: {
-              viewerProtocolPolicy: "redirect-to-https" as any,
-            },
-          },
-        },
-      });
-
-      stack.addOutputs({
-        SiteUrl: site.url,
-        CloudFrontDistributionId: site.cdk?.distribution.distributionId,
-      });
+      // Environment variables
+      environment: {
+        NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || "https://candycoat.co",
+      },
     });
+
+    return {
+      url: nextjs.url,
+    };
   },
-} satisfies SSTConfig;
+});

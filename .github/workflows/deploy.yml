@@ -37,13 +37,13 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           # Option 1: Using OIDC (recommended - more secure, no long-lived credentials)
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          #role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
 
           # Option 2: Using access keys (simpler setup, less secure)
           # Uncomment these and comment out role-to-assume if using access keys
-          # aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          # aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Deploy with SST
         run: npx sst deploy --stage production

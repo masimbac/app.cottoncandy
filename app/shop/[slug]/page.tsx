@@ -22,6 +22,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState<"description" | "ingredients">("description");
   const [addedToCart, setAddedToCart] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const addItem = useCartStore((state) => state.addItem);
   const itemCount = useCartStore((state) => state.getItemCount());
@@ -60,14 +61,9 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <Link href="/" className="flex items-center">
-              <Image
-                src="/images/silk-butter-logo.png"
-                alt="Candy.Coat"
-                width={120}
-                height={40}
-                className="h-10 w-auto"
-                priority
-              />
+              <span className="text-3xl font-bold text-text-primary">
+                Candy.<span className="text-primary">Coat</span>
+              </span>
             </Link>
 
             <div className="hidden md:flex items-center space-x-8">
@@ -129,18 +125,70 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
       <section className="py-12 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Product Image */}
-            <div className={`bg-gradient-to-br ${product.gradient} rounded-2xl p-12 flex items-center justify-center relative`}>
-              <Image
-                src={product.image}
-                alt={product.name}
-                width={500}
-                height={500}
-                className="object-contain w-full h-full"
-              />
-              <div className={`absolute top-6 right-6 ${product.badgeColor} text-white px-4 py-2 rounded-full text-sm font-semibold`}>
-                {product.badge}
+            {/* Product Image Carousel */}
+            <div className="space-y-4">
+              {/* Main Image */}
+              <div className={`bg-gradient-to-br ${product.gradient} rounded-2xl p-12 flex items-center justify-center relative`}>
+                <Image
+                  src={product.images[selectedImageIndex]}
+                  alt={`${product.name} - View ${selectedImageIndex + 1}`}
+                  width={500}
+                  height={500}
+                  className="object-contain w-full h-full transition-opacity duration-300"
+                />
+                <div className={`absolute top-6 right-6 ${product.badgeColor} text-white px-4 py-2 rounded-full text-sm font-semibold`}>
+                  {product.badge}
+                </div>
+
+                {/* Navigation Arrows */}
+                {product.images.length > 1 && (
+                  <>
+                    <button
+                      onClick={() => setSelectedImageIndex((prev) => (prev === 0 ? product.images.length - 1 : prev - 1))}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all"
+                      aria-label="Previous image"
+                    >
+                      <svg className="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+                    <button
+                      onClick={() => setSelectedImageIndex((prev) => (prev === product.images.length - 1 ? 0 : prev + 1))}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all"
+                      aria-label="Next image"
+                    >
+                      <svg className="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </>
+                )}
               </div>
+
+              {/* Thumbnail Navigation */}
+              {product.images.length > 1 && (
+                <div className="flex gap-3 justify-center">
+                  {product.images.map((image, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setSelectedImageIndex(index)}
+                      className={`w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                        selectedImageIndex === index
+                          ? "border-primary shadow-lg scale-105"
+                          : "border-gray-200 hover:border-gray-300"
+                      }`}
+                    >
+                      <Image
+                        src={image}
+                        alt={`${product.name} thumbnail ${index + 1}`}
+                        width={80}
+                        height={80}
+                        className="object-cover w-full h-full"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Product Info */}
@@ -442,7 +490,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                   <svg className="w-5 h-5 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  hello@candycoat.co
+                  info@candycoat.co
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

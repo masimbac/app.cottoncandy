@@ -10,14 +10,9 @@ export default function Home() {
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center">
-              <Image
-                src="/images/silk-butter-logo.png"
-                alt="Candy.Coat"
-                width={120}
-                height={40}
-                className="h-10 w-auto"
-                priority
-              />
+              <span className="text-3xl font-bold text-text-primary">
+                Candy.<span className="text-primary">Coat</span>
+              </span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -93,17 +88,17 @@ export default function Home() {
               Our Luxurious Collection
             </h2>
             <p className="text-lg text-text-secondary max-w-2xl mx-auto">
-              Discover three exquisite body butters, each crafted with rich natural ingredients and irresistible scents to deeply nourish your skin.
+              Discover four exquisite body butters, each crafted with rich natural ingredients and irresistible scents to deeply nourish your skin.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Citrus Kiss */}
             <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
               <div className="relative h-64 bg-gradient-to-br from-orange-50 to-yellow-50 flex items-center justify-center p-8">
                 <Image
-                  src="/images/citrus-kiss.png"
-                  alt="Citrus Kiss Body Cream"
+                  src="/images/citrus-kiss-2.jpeg"
+                  alt="Citrus Kiss Body Butter"
                   width={200}
                   height={200}
                   className="object-contain w-full h-full"
@@ -147,8 +142,8 @@ export default function Home() {
             <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
               <div className="relative h-64 bg-gradient-to-br from-pink-50 to-purple-50 flex items-center justify-center p-8">
                 <Image
-                  src="/images/cotton-candy-swirl.png"
-                  alt="Cotton Candy Swirl Body Cream"
+                  src="/images/cotton-candy-swirl-2.jpeg"
+                  alt="Cotton Candy Swirl Body Butter"
                   width={200}
                   height={200}
                   className="object-contain w-full h-full"
@@ -192,8 +187,8 @@ export default function Home() {
             <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
               <div className="relative h-64 bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center p-8">
                 <Image
-                  src="/images/powder-cloud.png"
-                  alt="Powder Cloud Body Cream"
+                  src="/images/powder-cloud-2.jpeg"
+                  alt="Powder Cloud Body Butter"
                   width={200}
                   height={200}
                   className="object-contain w-full h-full"
@@ -228,6 +223,51 @@ export default function Home() {
                   </li>
                 </ul>
                 <Link href="/shop/powder-cloud" className="btn-secondary w-full block text-center">
+                  Learn More
+                </Link>
+              </div>
+            </div>
+
+            {/* Butter Cream Bliss */}
+            <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
+              <div className="relative h-64 bg-gradient-to-br from-amber-50 to-orange-50 flex items-center justify-center p-8">
+                <Image
+                  src="/images/butter-cream-bliss-2.jpeg"
+                  alt="Butter Cream Bliss Body Butter"
+                  width={200}
+                  height={200}
+                  className="object-contain w-full h-full"
+                />
+                <div className="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                  Luxurious
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-2xl font-bold text-text-primary mb-3">Butter Cream Bliss</h3>
+                <p className="text-text-secondary mb-4 leading-relaxed">
+                  Indulge in the rich, creamy embrace of Butter Cream Bliss! This ultra-luxurious body butter wraps your skin in velvety softness with a decadent vanilla-cream scent.
+                </p>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-start text-sm text-text-secondary">
+                    <svg className="w-5 h-5 text-success mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    Ultra-rich formula
+                  </li>
+                  <li className="flex items-start text-sm text-text-secondary">
+                    <svg className="w-5 h-5 text-success mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    Decadent vanilla-cream scent
+                  </li>
+                  <li className="flex items-start text-sm text-text-secondary">
+                    <svg className="w-5 h-5 text-success mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    Perfect for pampering sessions
+                  </li>
+                </ul>
+                <Link href="/shop/butter-cream-bliss" className="btn-primary w-full block text-center">
                   Learn More
                 </Link>
               </div>
@@ -480,7 +520,7 @@ export default function Home() {
                   <svg className="w-5 h-5 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  hello@candycoat.co
+                  info@candycoat.co
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
