@@ -37,19 +37,19 @@ export const products: Product[] = [
     badgeColor: "bg-secondary",
     gradient: "from-orange-50 to-yellow-50",
     benefits: [
+      "24 hours of nourishing moisture",
       "Deep hydration with shea butter and mango butter",
       "Uplifting citrus scent that boosts your mood",
       "Perfect for morning use to start your day energized",
-      "Revitalizes and refreshes tired skin",
-      "Long-lasting moisture that absorbs quickly"
+      "Revitalizes and refreshes tired skin"
     ],
     ingredients: [
       "Shea Butter (Butyrospermum Parkii)",
       "Mango Butter (Mangifera Indica)",
-      "Sweet Almond Oil",
-      "Natural Citrus Essential Oils (Orange, Lemon, Grapefruit)",
+      "Jojoba Oil",
+      "Grapeseed Oil",
       "Vitamin E",
-      "Natural Colorants",
+      "Natural Citrus Essential Oils (Orange, Lemon, Grapefruit)",
       "Natural Preservatives"
     ],
     sizes: [
@@ -74,20 +74,20 @@ export const products: Product[] = [
     badgeColor: "bg-primary",
     gradient: "from-pink-50 to-purple-50",
     benefits: [
+      "24 hours of nourishing moisture",
       "Luxurious moisture for soft, supple skin",
       "Sweet fragrance that lingers all day",
       "Great for nighttime pampering sessions",
-      "Whimsical scent reminiscent of summer days",
-      "Deeply nourishing formula"
+      "Whimsical scent reminiscent of summer days"
     ],
     ingredients: [
       "Shea Butter (Butyrospermum Parkii)",
       "Mango Butter (Mangifera Indica)",
-      "Coconut Oil",
+      "Jojoba Oil",
+      "Grapeseed Oil",
+      "Vitamin E",
       "Natural Sweet Vanilla Extract",
       "Cotton Candy Essence",
-      "Vitamin E",
-      "Natural Colorants",
       "Natural Preservatives"
     ],
     sizes: [
@@ -112,20 +112,21 @@ export const products: Product[] = [
     badgeColor: "bg-accent text-text-primary",
     gradient: "from-purple-50 to-blue-50",
     benefits: [
+      "24 hours of nourishing moisture",
       "Calming scent that promotes relaxation",
       "Rich in nourishing ingredients for all-day hydration",
       "Ideal for sensitive skin with gentle formula",
-      "Subtle powdery fragrance for comfort",
-      "Perfect for evening wind-down routine"
+      "Subtle powdery fragrance for comfort"
     ],
     ingredients: [
       "Shea Butter (Butyrospermum Parkii)",
       "Mango Butter (Mangifera Indica)",
       "Jojoba Oil",
+      "Grapeseed Oil",
+      "Vitamin E",
       "Natural Powder Essence",
       "Chamomile Extract",
       "Lavender Essential Oil",
-      "Vitamin E",
       "Natural Preservatives"
     ],
     sizes: [
@@ -150,20 +151,21 @@ export const products: Product[] = [
     badgeColor: "bg-amber-500 text-white",
     gradient: "from-amber-50 to-cream-50",
     benefits: [
+      "24 hours of nourishing moisture",
       "Ultra-rich formula for intense nourishment",
       "Decadent vanilla-cream scent that lingers",
       "Velvety smooth texture melts into skin",
-      "Perfect for full-body pampering sessions",
-      "Leaves skin with a silky, glowing finish"
+      "Perfect for full-body pampering sessions"
     ],
     ingredients: [
       "Shea Butter (Butyrospermum Parkii)",
       "Mango Butter (Mangifera Indica)",
+      "Jojoba Oil",
+      "Grapeseed Oil",
+      "Vitamin E",
       "Cocoa Butter",
       "Natural Vanilla Extract",
       "Sweet Cream Essence",
-      "Argan Oil",
-      "Vitamin E",
       "Natural Preservatives"
     ],
     sizes: [

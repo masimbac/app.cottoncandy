@@ -64,7 +64,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-text-primary mb-6 leading-tight">
-              Indulge Your Skin with <span className="text-primary">Candy.Coat</span> Body Butters
+              Indulge Your Skin with <span className="text-primary">Candy.Coat</span> Organic selection of Body Butters
             </h1>
             <p className="text-lg md:text-xl text-text-secondary mb-8 max-w-2xl mx-auto leading-relaxed">
               Soft, fluffy, and nourishing body butters that turn your daily skincare routine into a moment of pure bliss.
@@ -88,7 +88,7 @@ export default function Home() {
               Our Luxurious Collection
             </h2>
             <p className="text-lg text-text-secondary max-w-2xl mx-auto">
-              Discover four exquisite body butters, each crafted with rich natural ingredients and irresistible scents to deeply nourish your skin.
+              Discover our exquisite body butters, each crafted with rich natural ingredients and irresistible scents to deeply nourish your skin.
             </p>
           </div>
 
@@ -117,23 +117,23 @@ export default function Home() {
                     <svg className="w-5 h-5 text-success mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    Deep hydration with shea butter
+                    24 hours of nourishing moisture
                   </li>
                   <li className="flex items-start text-sm text-text-secondary">
                     <svg className="w-5 h-5 text-success mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    Uplifting scent that boosts your mood
+                    Shea butter, Mango butter, Jojoba
                   </li>
                   <li className="flex items-start text-sm text-text-secondary">
                     <svg className="w-5 h-5 text-success mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    Perfect for morning use
+                    Grapeseed oil & Vitamin E
                   </li>
                 </ul>
                 <Link href="/shop/citrus-kiss" className="btn-secondary w-full block text-center">
-                  Learn More
+                Get Some
                 </Link>
               </div>
             </div>
@@ -162,23 +162,23 @@ export default function Home() {
                     <svg className="w-5 h-5 text-success mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    Luxurious moisture for soft skin
+                    24 hours of nourishing moisture
                   </li>
                   <li className="flex items-start text-sm text-text-secondary">
                     <svg className="w-5 h-5 text-success mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    Sweet fragrance that lingers all day
+                    Shea butter, Mango butter, Jojoba
                   </li>
                   <li className="flex items-start text-sm text-text-secondary">
                     <svg className="w-5 h-5 text-success mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    Great for nighttime pampering
+                    Grapeseed oil & Vitamin E
                   </li>
                 </ul>
                 <Link href="/shop/cotton-candy-swirl" className="btn-primary w-full block text-center">
-                  Learn More
+                Get Some
                 </Link>
               </div>
             </div>
@@ -207,23 +207,23 @@ export default function Home() {
                     <svg className="w-5 h-5 text-success mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    Calming scent promotes relaxation
+                    24 hours of nourishing moisture
                   </li>
                   <li className="flex items-start text-sm text-text-secondary">
                     <svg className="w-5 h-5 text-success mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    Rich in nourishing ingredients
+                    Shea butter, Mango butter, Jojoba
                   </li>
                   <li className="flex items-start text-sm text-text-secondary">
                     <svg className="w-5 h-5 text-success mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    Ideal for sensitive skin
+                    Grapeseed oil & Vitamin E
                   </li>
                 </ul>
                 <Link href="/shop/powder-cloud" className="btn-secondary w-full block text-center">
-                  Learn More
+                  Get Some
                 </Link>
               </div>
             </div>
@@ -252,23 +252,23 @@ export default function Home() {
                     <svg className="w-5 h-5 text-success mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    Ultra-rich formula
+                    24 hours of nourishing moisture
                   </li>
                   <li className="flex items-start text-sm text-text-secondary">
                     <svg className="w-5 h-5 text-success mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    Decadent vanilla-cream scent
+                    Shea butter, Mango butter, Jojoba
                   </li>
                   <li className="flex items-start text-sm text-text-secondary">
                     <svg className="w-5 h-5 text-success mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    Perfect for pampering sessions
+                    Grapeseed oil & Vitamin E
                   </li>
                 </ul>
                 <Link href="/shop/butter-cream-bliss" className="btn-primary w-full block text-center">
-                  Learn More
+                  Get Some
                 </Link>
               </div>
             </div>
