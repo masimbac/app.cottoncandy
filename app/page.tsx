@@ -88,11 +88,11 @@ export default function Home() {
               Our Luxurious Collection
             </h2>
             <p className="text-lg text-text-secondary max-w-2xl mx-auto">
-              Discover our exquisite body butters, each crafted with rich natural ingredients and irresistible scents to deeply nourish your skin.
+              Discover five exquisite body butters, each crafted with rich natural ingredients and irresistible scents to deeply nourish your skin.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
             {/* Citrus Kiss */}
             <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
               <div className="relative h-64 bg-gradient-to-br from-orange-50 to-yellow-50 flex items-center justify-center p-8">
@@ -268,6 +268,51 @@ export default function Home() {
                   </li>
                 </ul>
                 <Link href="/shop/butter-cream-bliss" className="btn-primary w-full block text-center">
+                  Get Some
+                </Link>
+              </div>
+            </div>
+
+            {/* Melon Mousse */}
+            <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
+              <div className="relative h-64 bg-gradient-to-br from-green-50 to-lime-50 flex items-center justify-center p-8">
+                <Image
+                  src="/images/melon-mousse-3.jpeg"
+                  alt="Melon Mousse Body Butter"
+                  width={200}
+                  height={200}
+                  className="object-contain w-full h-full"
+                />
+                <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                  Refreshing
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-2xl font-bold text-text-primary mb-3">Melon Mousse</h3>
+                <p className="text-text-secondary mb-4 leading-relaxed">
+                  Refresh and revitalize with the crisp, juicy essence of Melon Mousse! This light, fluffy body butter brings the freshness of summer melons to your skin.
+                </p>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-start text-sm text-text-secondary">
+                    <svg className="w-5 h-5 text-success mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    24 hours of nourishing moisture
+                  </li>
+                  <li className="flex items-start text-sm text-text-secondary">
+                    <svg className="w-5 h-5 text-success mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    Shea butter, Mango butter, Jojoba
+                  </li>
+                  <li className="flex items-start text-sm text-text-secondary">
+                    <svg className="w-5 h-5 text-success mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    Grapeseed oil & Vitamin E
+                  </li>
+                </ul>
+                <Link href="/shop/melon-mousse" className="btn-secondary w-full block text-center">
                   Get Some
                 </Link>
               </div>
