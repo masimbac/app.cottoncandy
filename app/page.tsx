@@ -97,7 +97,7 @@ export default function Home() {
             <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
               <div className="relative h-64 bg-gradient-to-br from-orange-50 to-yellow-50 flex items-center justify-center p-8">
                 <Image
-                  src="/images/citrus-kiss-2.jpeg"
+                  src="/images/citrus-kiss-3.jpeg"
                   alt="Citrus Kiss Body Butter"
                   width={200}
                   height={200}
@@ -142,7 +142,7 @@ export default function Home() {
             <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
               <div className="relative h-64 bg-gradient-to-br from-pink-50 to-purple-50 flex items-center justify-center p-8">
                 <Image
-                  src="/images/cotton-candy-swirl-2.jpeg"
+                  src="/images/cotton-candy-swirl-3.jpeg"
                   alt="Cotton Candy Swirl Body Butter"
                   width={200}
                   height={200}
@@ -187,7 +187,7 @@ export default function Home() {
             <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
               <div className="relative h-64 bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center p-8">
                 <Image
-                  src="/images/powder-cloud-2.jpeg"
+                  src="/images/powder-cloud-3.jpeg"
                   alt="Powder Cloud Body Butter"
                   width={200}
                   height={200}
@@ -232,7 +232,7 @@ export default function Home() {
             <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
               <div className="relative h-64 bg-gradient-to-br from-amber-50 to-orange-50 flex items-center justify-center p-8">
                 <Image
-                  src="/images/butter-cream-bliss-2.jpeg"
+                  src="/images/butter-cream-bliss-3.jpeg"
                   alt="Butter Cream Bliss Body Butter"
                   width={200}
                   height={200}
