@@ -53,9 +53,9 @@ export const products: Product[] = [
       "Natural Preservatives"
     ],
     sizes: [
-      { value: "50ml", label: "50ml", price: 100.00 },
-      { value: "100ml", label: "100ml", price: 150.00 },
-      { value: "125ml", label: "125ml", price: 200.00 }
+      { value: "100ml", label: "100ml", price: 135.00 },
+      { value: "125ml", label: "125ml", price: 195.00 },
+      { value: "250ml", label: "250ml", price: 305.00 }
     ],
     inStock: true,
     featured: true
@@ -91,9 +91,9 @@ export const products: Product[] = [
       "Natural Preservatives"
     ],
     sizes: [
-      { value: "50ml", label: "50ml", price: 100.00 },
-      { value: "100ml", label: "100ml", price: 150.00 },
-      { value: "125ml", label: "125ml", price: 200.00 }
+      { value: "100ml", label: "100ml", price: 135.00 },
+      { value: "125ml", label: "125ml", price: 195.00 },
+      { value: "250ml", label: "250ml", price: 305.00 }
     ],
     inStock: true,
     featured: true
@@ -130,9 +130,9 @@ export const products: Product[] = [
       "Natural Preservatives"
     ],
     sizes: [
-      { value: "50ml", label: "50ml", price: 100.00 },
-      { value: "100ml", label: "100ml", price: 150.00 },
-      { value: "125ml", label: "125ml", price: 200.00 }
+      { value: "100ml", label: "100ml", price: 135.00 },
+      { value: "125ml", label: "125ml", price: 195.00 },
+      { value: "250ml", label: "250ml", price: 305.00 }
     ],
     inStock: true,
     featured: true
@@ -169,9 +169,9 @@ export const products: Product[] = [
       "Natural Preservatives"
     ],
     sizes: [
-      { value: "50ml", label: "50ml", price: 100.00 },
-      { value: "100ml", label: "100ml", price: 150.00 },
-      { value: "125ml", label: "125ml", price: 200.00 }
+      { value: "100ml", label: "100ml", price: 135.00 },
+      { value: "125ml", label: "125ml", price: 195.00 },
+      { value: "250ml", label: "250ml", price: 305.00 }
     ],
     inStock: true,
     featured: true
@@ -208,9 +208,9 @@ export const products: Product[] = [
       "Natural Preservatives"
     ],
     sizes: [
-      { value: "50ml", label: "50ml", price: 100.00 },
-      { value: "100ml", label: "100ml", price: 150.00 },
-      { value: "125ml", label: "125ml", price: 200.00 }
+      { value: "100ml", label: "100ml", price: 135.00 },
+      { value: "125ml", label: "125ml", price: 195.00 },
+      { value: "250ml", label: "250ml", price: 305.00 }
     ],
     inStock: true,
     featured: true
