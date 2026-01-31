@@ -13,7 +13,8 @@ export default function CheckoutPage() {
   const itemCount = useCartStore((state) => state.getItemCount());
   const clearCart = useCartStore((state) => state.clearCart);
 
-  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [step, setStep] = useState<1 | 2>(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     // Shipping
     email: "",
@@ -26,12 +27,6 @@ export default function CheckoutPage() {
     postalCode: "",
     country: "South Africa",
     phone: "",
-    // Payment
-    cardNumber: "",
-    cardName: "",
-    expiry: "",
-    cvv: "",
-    billingAddressSame: true,
   });
 
   // Shipping: Free for Gauteng orders up to R500, otherwise R90
@@ -48,7 +43,7 @@ export default function CheckoutPage() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (step === 1) {
@@ -59,17 +54,58 @@ export default function CheckoutPage() {
       }
       setStep(2);
     } else if (step === 2) {
-      // Validate payment info
-      if (!formData.cardNumber || !formData.cardName || !formData.expiry || !formData.cvv) {
-        alert("Please fill in all payment fields");
-        return;
-      }
-      setStep(3);
-    } else {
       // Process order
-      const orderId = `ORD-${Date.now()}`;
-      clearCart();
-      router.push(`/confirmation/${orderId}`);
+      setIsSubmitting(true);
+
+      try {
+        const response = await fetch("/api/orders", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            customer: {
+              email: formData.email,
+              firstName: formData.firstName,
+              lastName: formData.lastName,
+              phone: formData.phone,
+            },
+            shipping: {
+              address: formData.address,
+              address2: formData.address2,
+              city: formData.city,
+              province: formData.province,
+              postalCode: formData.postalCode,
+              country: formData.country,
+            },
+            items: items.map((item) => ({
+              productId: item.productId,
+              name: item.name,
+              size: item.size,
+              sizeLabel: item.sizeLabel,
+              quantity: item.quantity,
+              unitPrice: Math.round(item.price * 100),
+              subtotal: Math.round(item.price * item.quantity * 100),
+              image: item.image,
+            })),
+            subtotal: Math.round(subtotal * 100),
+            shippingCost: Math.round(shippingCost * 100),
+            total: Math.round(total * 100),
+          }),
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          clearCart();
+          router.push(`/confirmation/${data.order.orderId}`);
+        } else {
+          alert(data.error || "Failed to place order. Please try again.");
+        }
+      } catch (error) {
+        console.error("Order submission error:", error);
+        alert("Failed to place order. Please try again.");
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -113,8 +149,7 @@ export default function CheckoutPage() {
           <div className="flex items-center justify-center">
             {[
               { num: 1, label: "Shipping" },
-              { num: 2, label: "Payment" },
-              { num: 3, label: "Review" },
+              { num: 2, label: "Review" },
             ].map((s, idx) => (
               <div key={s.num} className="flex items-center">
                 <div className="flex flex-col items-center">
@@ -135,7 +170,7 @@ export default function CheckoutPage() {
                   </div>
                   <span className="text-sm mt-2 text-text-secondary">{s.label}</span>
                 </div>
-                {idx < 2 && (
+                {idx < 1 && (
                   <div
                     className={`w-24 h-1 mx-4 ${
                       step > s.num ? "bg-primary" : "bg-gray-300"
@@ -332,107 +367,14 @@ export default function CheckoutPage() {
                         Back to Cart
                       </Link>
                       <button type="submit" className="flex-1 btn-primary py-3 rounded-lg">
-                        Continue to Payment
-                      </button>
-                    </div>
-                  </div>
-                )}
-
-                {/* Step 2: Payment */}
-                {step === 2 && (
-                  <div>
-                    <h2 className="text-3xl font-bold text-text-primary mb-6">Payment Information</h2>
-
-                    <div className="space-y-4">
-                      <div>
-                        <label className="block text-sm font-semibold text-text-primary mb-2">
-                          Card Number *
-                        </label>
-                        <input
-                          type="text"
-                          name="cardNumber"
-                          value={formData.cardNumber}
-                          onChange={handleInputChange}
-                          placeholder="1234 5678 9012 3456"
-                          className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary"
-                          required
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-semibold text-text-primary mb-2">
-                          Cardholder Name *
-                        </label>
-                        <input
-                          type="text"
-                          name="cardName"
-                          value={formData.cardName}
-                          onChange={handleInputChange}
-                          placeholder="John Doe"
-                          className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary"
-                          required
-                        />
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-semibold text-text-primary mb-2">
-                            Expiration Date *
-                          </label>
-                          <input
-                            type="text"
-                            name="expiry"
-                            value={formData.expiry}
-                            onChange={handleInputChange}
-                            placeholder="MM/YY"
-                            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary"
-                            required
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-semibold text-text-primary mb-2">
-                            CVV *
-                          </label>
-                          <input
-                            type="text"
-                            name="cvv"
-                            value={formData.cvv}
-                            onChange={handleInputChange}
-                            placeholder="123"
-                            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <div className="bg-gray-50 p-4 rounded-lg flex items-center space-x-3">
-                        <svg className="w-6 h-6 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                        </svg>
-                        <div>
-                          <p className="text-sm font-semibold text-text-primary">Your payment is secure</p>
-                          <p className="text-xs text-text-secondary">We use SSL encryption to protect your data</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex gap-4 mt-8">
-                      <button
-                        type="button"
-                        onClick={() => setStep(1)}
-                        className="flex-1 text-center py-3 border-2 border-gray-300 text-text-primary rounded-lg font-semibold hover:bg-gray-50 transition-colors"
-                      >
-                        Back
-                      </button>
-                      <button type="submit" className="flex-1 btn-primary py-3 rounded-lg">
                         Review Order
                       </button>
                     </div>
                   </div>
                 )}
 
-                {/* Step 3: Review */}
-                {step === 3 && (
+                {/* Step 2: Review */}
+                {step === 2 && (
                   <div>
                     <h2 className="text-3xl font-bold text-text-primary mb-6">Review Your Order</h2>
 
@@ -474,19 +416,10 @@ export default function CheckoutPage() {
 
                       {/* Payment Method */}
                       <div className="bg-gray-50 p-6 rounded-lg">
-                        <div className="flex justify-between items-start mb-4">
-                          <h3 className="font-bold text-text-primary">Payment Method</h3>
-                          <button
-                            type="button"
-                            onClick={() => setStep(2)}
-                            className="text-primary text-sm hover:underline"
-                          >
-                            Edit
-                          </button>
-                        </div>
+                        <h3 className="font-bold text-text-primary mb-4">Payment Method</h3>
                         <p className="text-text-secondary">
-                          Card ending in {formData.cardNumber.slice(-4)}<br />
-                          {formData.cardName}
+                          <strong>EFT (Electronic Funds Transfer)</strong><br />
+                          Payment details will be provided after order confirmation
                         </p>
                       </div>
 
@@ -507,13 +440,18 @@ export default function CheckoutPage() {
                     <div className="flex gap-4 mt-8">
                       <button
                         type="button"
-                        onClick={() => setStep(2)}
+                        onClick={() => setStep(1)}
                         className="flex-1 text-center py-3 border-2 border-gray-300 text-text-primary rounded-lg font-semibold hover:bg-gray-50 transition-colors"
+                        disabled={isSubmitting}
                       >
                         Back
                       </button>
-                      <button type="submit" className="flex-1 btn-primary py-3 rounded-lg">
-                        Place Order
+                      <button
+                        type="submit"
+                        className="flex-1 btn-primary py-3 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? "Processing..." : "Place Order"}
                       </button>
                     </div>
                   </div>

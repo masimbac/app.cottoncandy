@@ -2,23 +2,17 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { use, useState } from "react";
-import { getProductBySlug, getAllProducts } from "@/lib/products";
+import { use, useState, useEffect } from "react";
+import type { Product } from "@/lib/products";
 import { useCartStore } from "@/lib/store/cart";
 import { notFound } from "next/navigation";
 
 export default function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
-  const product = getProductBySlug(slug);
-
-  if (!product) {
-    notFound();
-  }
-
-  const allProducts = getAllProducts();
-  const relatedProducts = allProducts.filter(p => p.id !== product.id);
-
-  const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
+  const [product, setProduct] = useState<Product | null>(null);
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedSize, setSelectedSize] = useState<Product["sizes"][0] | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState<"description" | "ingredients">("description");
   const [addedToCart, setAddedToCart] = useState(false);
@@ -26,6 +20,42 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
 
   const addItem = useCartStore((state) => state.addItem);
   const itemCount = useCartStore((state) => state.getItemCount());
+
+  useEffect(() => {
+    async function fetchProductData() {
+      try {
+        // Fetch current product
+        const productResponse = await fetch(`/api/products/${slug}`);
+        const productData = await productResponse.json();
+
+        if (!productData.success || !productData.product) {
+          notFound();
+          return;
+        }
+
+        setProduct(productData.product);
+        // Set default size to 125ml (index 1)
+        setSelectedSize(productData.product.sizes[1]);
+
+        // Fetch all products for related products
+        const allProductsResponse = await fetch("/api/products");
+        const allProductsData = await allProductsResponse.json();
+
+        if (allProductsData.success) {
+          const related = allProductsData.products.filter(
+            (p: Product) => p.id !== productData.product.id
+          );
+          setRelatedProducts(related);
+        }
+      } catch (error) {
+        console.error("Failed to fetch product:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProductData();
+  }, [slug]);
 
   const handleQuantityChange = (change: number) => {
     const newQuantity = quantity + change;
@@ -35,6 +65,8 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
   };
 
   const handleAddToCart = () => {
+    if (!product || !selectedSize) return;
+
     addItem({
       productId: product.id,
       name: product.name,
@@ -53,6 +85,17 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
     // Reset quantity to 1
     setQuantity(1);
   };
+
+  if (loading || !product || !selectedSize) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-4 text-text-secondary">Loading product...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white">

@@ -14,6 +14,9 @@
     "console": "sst console"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.699.0",
+    "@aws-sdk/client-ses": "^3.699.0",
+    "@aws-sdk/lib-dynamodb": "^3.978.0",
     "next": "16.1.4",
     "react": "19.2.3",
     "react-dom": "19.2.3",

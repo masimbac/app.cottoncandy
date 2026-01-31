@@ -6,6 +6,15 @@
 
 declare module "sst" {
   export interface Resource {
+    "OrderEmail": {
+      "configSet": string
+      "sender": string
+      "type": "sst.aws.Email"
+    }
+    "OrdersTable": {
+      "name": string
+      "type": "sst.aws.Dynamo"
+    }
     "site": {
       "type": "sst.aws.Nextjs"
       "url": string

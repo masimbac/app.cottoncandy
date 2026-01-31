@@ -2,18 +2,37 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { getAllProducts } from "@/lib/products";
+import { useState, useEffect } from "react";
+import type { Product } from "@/lib/products";
 import { useCartStore } from "@/lib/store/cart";
 
 export default function ShopPage() {
-  const products = getAllProducts();
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
   const addItem = useCartStore((state) => state.addItem);
   const itemCount = useCartStore((state) => state.getItemCount());
   const [addedProductId, setAddedProductId] = useState<string | null>(null);
 
-  const handleAddToCart = (product: typeof products[0]) => {
-    const defaultSize = product.sizes[0]; // Use first size (4oz) as default
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const response = await fetch("/api/products");
+        const data = await response.json();
+        if (data.success) {
+          setProducts(data.products);
+        }
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProducts();
+  }, []);
+
+  const handleAddToCart = (product: Product) => {
+    const defaultSize = product.sizes[1]; // Use 125ml as default
     addItem({
       productId: product.id,
       name: product.name,
@@ -99,11 +118,18 @@ export default function ShopPage() {
       {/* Products Grid */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Filter/Sort Bar */}
-          <div className="flex flex-col sm:flex-row justify-between items-center mb-12 pb-6 border-b border-gray-200">
-            <p className="text-text-secondary mb-4 sm:mb-0">
-              Showing all {products.length} products
-            </p>
+          {loading ? (
+            <div className="text-center py-20">
+              <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-primary mx-auto"></div>
+              <p className="mt-4 text-text-secondary">Loading products...</p>
+            </div>
+          ) : (
+            <>
+              {/* Filter/Sort Bar */}
+              <div className="flex flex-col sm:flex-row justify-between items-center mb-12 pb-6 border-b border-gray-200">
+                <p className="text-text-secondary mb-4 sm:mb-0">
+                  Showing all {products.length} products
+                </p>
             <div className="flex items-center space-x-4">
               <label htmlFor="sort" className="text-sm text-text-secondary">Sort by:</label>
               <select
@@ -163,7 +189,7 @@ export default function ShopPage() {
                   <div className="flex items-center justify-between mb-4">
                     <div>
                       <span className="text-3xl font-bold text-primary">R{product.price.toFixed(2)}</span>
-                      <span className="text-sm text-text-secondary ml-2">/ 50ml</span>
+                      <span className="text-sm text-text-secondary ml-2">/ 125ml</span>
                     </div>
                     <div className="flex items-center text-secondary">
                       {[...Array(5)].map((_, i) => (
@@ -213,7 +239,7 @@ export default function ShopPage() {
                   </svg>
                 </div>
                 <h3 className="font-bold text-text-primary mb-2">Free Shipping</h3>
-                <p className="text-sm text-text-secondary">On orders over $50</p>
+                <p className="text-sm text-text-secondary">On orders over R500</p>
               </div>
               <div>
                 <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
@@ -244,6 +270,8 @@ export default function ShopPage() {
               </div>
             </div>
           </div>
+            </>
+          )}
         </div>
       </section>
 
