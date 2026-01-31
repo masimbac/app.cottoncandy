@@ -15,6 +15,10 @@ declare module "sst" {
       "name": string
       "type": "sst.aws.Dynamo"
     }
+    "ProductsTable": {
+      "name": string
+      "type": "sst.aws.Dynamo"
+    }
     "site": {
       "type": "sst.aws.Nextjs"
       "url": string

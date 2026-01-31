@@ -89,12 +89,20 @@ export default function AdminPage() {
               </h1>
               <p className="text-sm text-text-secondary mt-1">Order Management</p>
             </div>
-            <Link
-              href="/"
-              className="text-primary hover:underline text-sm font-semibold"
-            >
-              ← Back to Store
-            </Link>
+            <div className="flex items-center gap-4">
+              <Link
+                href="/admin/products"
+                className="px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg hover:bg-primary/90"
+              >
+                Manage Products
+              </Link>
+              <Link
+                href="/"
+                className="text-primary hover:underline text-sm font-semibold"
+              >
+                ← Back to Store
+              </Link>
+            </div>
           </div>
         </div>
       </header>

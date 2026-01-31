@@ -24,6 +24,20 @@ export default $config({
       },
     });
 
+    // DynamoDB Products table
+    const productsTable = new sst.aws.Dynamo("ProductsTable", {
+      fields: {
+        id: "string",
+        slug: "string",
+        featured: "number", // 1 for featured, 0 for not featured
+      },
+      primaryIndex: { hashKey: "id" },
+      globalIndexes: {
+        slugIndex: { hashKey: "slug" },
+        featuredIndex: { hashKey: "featured", rangeKey: "id" },
+      },
+    });
+
     // SES email identity
     const email = new sst.aws.Email("OrderEmail", {
       sender: "orders@candycoat.co",
@@ -37,7 +51,7 @@ export default $config({
       // },
 
       // Link resources
-      link: [ordersTable, email],
+      link: [ordersTable, productsTable, email],
 
       // Environment variables
       environment: {
@@ -48,6 +62,7 @@ export default $config({
     return {
       url: nextjs.url,
       ordersTable: ordersTable.name,
+      productsTable: productsTable.name,
     };
   },
 });

@@ -11,3 +11,4 @@ export const docClient = DynamoDBDocumentClient.from(client, {
 });
 
 export const ORDERS_TABLE_NAME = Resource.OrdersTable.name;
+export const PRODUCTS_TABLE_NAME = Resource.ProductsTable.name;

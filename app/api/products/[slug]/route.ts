@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getProductBySlugFromDB } from "@/lib/db/products";
 import { getProductBySlug } from "@/lib/products";
 
 export async function GET(
@@ -7,7 +8,29 @@ export async function GET(
 ) {
   try {
     const { slug } = await params;
-    const product = getProductBySlug(slug);
+    const { searchParams } = new URL(request.url);
+    const useDb = searchParams.get("useDb") !== "false"; // Use DB by default
+
+    let product;
+
+    if (useDb) {
+      // Fetch from database
+      try {
+        product = await getProductBySlugFromDB(slug);
+
+        // If not found in DB, fall back to products.ts
+        if (!product) {
+          console.warn(`Product ${slug} not found in database, falling back to products.ts`);
+          product = getProductBySlug(slug);
+        }
+      } catch (dbError) {
+        console.error("Database error, falling back to products.ts:", dbError);
+        product = getProductBySlug(slug);
+      }
+    } else {
+      // Fetch from products.ts (for testing/development)
+      product = getProductBySlug(slug);
+    }
 
     if (!product) {
       return NextResponse.json(
@@ -23,6 +46,7 @@ export async function GET(
     return NextResponse.json({
       success: true,
       product,
+      source: useDb ? "database" : "static",
     });
   } catch (error) {
     console.error("Failed to fetch product:", error);
